@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFEMÊ - Moda Feminina</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF6F3;
+            color: #2C2421;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .size-btn.active, .color-btn.active {
+            border-color: #2C2421;
+            background-color: #2C2421;
+            color: #ffffff;
+        }
+        .size-btn, .color-btn {
+            border: 1px solid #E5D2C5;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-[#FAF6F3] text-[#2C2421] antialiased">
+
+    <!-- FAIXA DO TOPO -->
+    <div class="bg-[#2C2421] text-white text-xs py-2 text-center font-light tracking-wide">
+        ✨ EFEMÊ — Moda & Estilo Feminino
+    </div>
+
+    <!-- HEADER / NAVEGAÇÃO -->
+    <header class="sticky top-0 z-40 bg-[#FAF6F3]/95 backdrop-blur-md border-b border-[#E5D2C5]/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- LOGO -->
+            <a href="#" onclick="filterCategory('Todos')" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-[#2C2421] text-white flex items-center justify-center font-serif text-xl font-bold group-hover:scale-105 transition-transform">
+                    E
+                </div>
+                <div>
+                    <span class="font-serif text-xl font-bold tracking-wider block leading-none">EFEMÊ.</span>
+                </div>
+            </a>
+
+            <!-- MENU DESKTOP -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#2C2421]">
+                <button onclick="filterCategory('Todos')" class="hover:text-[#A67B5B] transition-colors">Todos</button>
+                <button onclick="filterCategory('Feminino')" class="hover:text-[#A67B5B] transition-colors">Feminino</button>
+                <button onclick="filterCategory('Lançamentos')" class="hover:text-[#A67B5B] transition-colors">Lançamentos</button>
+                <button onclick="filterCategory('Promoções')" class="hover:text-[#A67B5B] transition-colors text-red-700 font-semibold border-b-2 border-red-700 pb-0.5">Promoções 🔥</button>
+                
+                <!-- DROPDOWN COLEÇÕES -->
+                <div class="relative group py-4">
+                    <button class="flex items-center gap-1 hover:text-[#A67B5B] transition-colors">
+                        Coleções <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="absolute top-full left-0 hidden group-hover:block w-48 bg-white border border-[#E5D2C5] rounded-xl shadow-lg py-2 z-50">
+                        <button onclick="filterCategory('Vestidos')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Vestidos</button>
+                        <button onclick="filterCategory('Conjuntos')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Conjuntos</button>
+                        <button onclick="filterCategory('Shorts')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Shorts</button>
+                        <button onclick="filterCategory('Cropped')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Cropped</button>
+                        <button onclick="filterCategory('Camisas')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Camisas & Blusas</button>
+                        <button onclick="filterCategory('Jaquetas')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Jaquetas / Casacos</button>
+                        <button onclick="filterCategory('Bodys')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Bodys</button>
+                        <button onclick="filterCategory('Acessórios')" class="w-full text-left px-4 py-2 text-xs hover:bg-[#FAF6F3] transition-colors">Acessórios</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- BUSCA E CARRINHO DESKTOP -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Buscar peças..." class="bg-[#FAF6F3] border border-transparent rounded-full py-2 pl-8 pr-4 text-xs focus:outline-none focus:border-[#2C2421] w-48 transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                </div>
+
+                <button onclick="toggleCartDrawer()" class="relative p-2 text-[#2C2421] hover:text-[#A67B5B] transition-colors">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cartCountBadge" class="hidden absolute top-0 right-0 bg-[#A67B5B] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-[#2C2421]">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MENU MOBILE -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-[#E5D2C5] px-4 py-4 flex flex-col gap-3">
+            <input type="text" id="searchInputMobile" oninput="handleSearchMobile()" placeholder="Buscar peças..." class="bg-[#FAF6F3] border border-[#E5D2C5] rounded-xl py-2 px-3 text-xs w-full mb-2">
+            <button onclick="filterCategory('Todos'); toggleMobileMenu()" class="text-left text-sm py-1 font-semibold">Todos</button>
+            <button onclick="filterCategory('Feminino'); toggleMobileMenu()" class="text-left text-sm py-1 font-semibold">Feminino</button>
+            <button onclick="filterCategory('Lançamentos'); toggleMobileMenu()" class="text-left text-sm py-1 font-semibold">Lançamentos</button>
+            <button onclick="filterCategory('Promoções'); toggleMobileMenu()" class="text-left text-sm py-1 font-semibold text-red-700">Promoções 🔥</button>
+            <div class="border-t border-gray-100 pt-2 flex flex-col gap-1 text-xs text-gray-600">
+                <button onclick="filterCategory('Vestidos'); toggleMobileMenu()" class="text-left py-1">Vestidos</button>
+                <button onclick="filterCategory('Conjuntos'); toggleMobileMenu()" class="text-left py-1">Conjuntos</button>
+                <button onclick="filterCategory('Shorts'); toggleMobileMenu()" class="text-left py-1">Shorts</button>
+                <button onclick="filterCategory('Cropped'); toggleMobileMenu()" class="text-left py-1">Cropped</button>
+                <button onclick="filterCategory('Camisas'); toggleMobileMenu()" class="text-left py-1">Camisas & Blusas</button>
+                <button onclick="filterCategory('Jaquetas'); toggleMobileMenu()" class="text-left py-1">Jaquetas & Casacos</button>
+                <button onclick="filterCategory('Bodys'); toggleMobileMenu()" class="text-left py-1">Bodys</button>
+                <button onclick="filterCategory('Acessórios'); toggleMobileMenu()" class="text-left py-1">Acessórios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECÇÃO HERO BANNER PRINCIPAL (CABIDEIRO COM ROUPAS) -->
+    <section class="relative bg-[#FAF6F3] text-[#2C2421] min-h-[480px] md:min-h-[560px] flex items-center overflow-hidden border-b border-[#E5D2C5]/50">
+        <!-- Imagem Direta de Cabideiro com Roupas e Cabides de Madeira -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.pexels.com/photos/5709661/pexels-photo-5709661.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Cabideiro com roupas penduradas EFEMÊ" class="w-full h-full object-cover object-center opacity-75">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#FAF6F3] via-[#FAF6F3]/75 to-transparent"></div>
+        </div>
+
+        <!-- Conteúdo do Banner -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="max-w-xl">
+                <!-- Badge Dourado / Bege -->
+                <span class="inline-block border border-[#A67B5B] text-[#A67B5B] text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-6 bg-white/80 backdrop-blur-sm">
+                    COLEÇÃO 2026
+                </span>
+
+                <!-- Título Principal -->
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-normal leading-[1.1] mb-6 text-[#2C2421]">
+                    Elegância que veste,<br>feminilidade que<br>expressa
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-xs sm:text-sm md:text-base text-gray-700 font-light leading-relaxed mb-8 max-w-lg">
+                    Descubra peças exclusivas desenhadas para expressar sua autenticidade com sofisticação e conforto premium.
+                </p>
+
+                <!-- Botões de Ação -->
+                <div class="flex flex-wrap items-center gap-4">
+                    <button onclick="filterCategory('Todos')" class="bg-[#D4A359] hover:bg-[#c2934c] text-black font-semibold text-xs sm:text-sm px-6 py-3 rounded-full uppercase tracking-wider transition-colors shadow-sm">
+                        VER COLEÇÃO
+                    </button>
+                    <button onclick="filterCategory('Promoções')" class="border border-gray-400 hover:bg-black/5 text-[#2C2421] font-medium text-xs sm:text-sm px-6 py-3 rounded-full uppercase tracking-wider transition-colors backdrop-blur-sm">
+                        OFERTAS ESPECIAIS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁREA PRINCIPAL DOS PRODUTOS -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-8 border-b border-[#E5D2C5]/50 pb-4">
+            <h2 id="currentCategoryTitle" class="font-serif text-2xl md:text-3xl font-bold text-[#2C2421]">Todas as Peças</h2>
+        </div>
+
+        <!-- GRID DE PRODUTOS -->
+        <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- Injetado dinamicamente via JS -->
+        </div>
+    </main>
+
+    <!-- DRAWER / LATERAL DO CARRINHO -->
+    <div id="cartBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <aside id="cartDrawer" class="fixed top-0 right-0 w-full max-w-md h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 border-b border-[#E5D2C5] flex items-center justify-between bg-[#FAF6F3]">
+            <h3 class="font-serif font-bold text-lg text-[#2C2421] flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping"></i> Seu Carrinho <span id="drawerCount" class="text-xs font-sans text-gray-500">(0)</span>
+            </h3>
+            <button onclick="toggleCartDrawer()" class="p-2 text-gray-400 hover:text-black">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- LISTA DE ITENS -->
+        <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-4 divide-y divide-gray-100">
+            <!-- ITENS SERÃO INJETADOS AQUI -->
+        </div>
+
+        <div id="cartEmptyNotice" class="flex-grow flex flex-col items-center justify-center p-6 text-center text-gray-400">
+            <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-[#E5D2C5]"></i>
+            <p class="text-sm font-medium">Seu carrinho está vazio.</p>
+        </div>
+
+        <!-- RODAPÉ DO CARRINHO -->
+        <div id="cartFooter" class="p-4 border-t border-[#E5D2C5] bg-[#FAF6F3] flex flex-col gap-3">
+            <div class="space-y-1 text-xs">
+                <div class="flex justify-between text-gray-600">
+                    <span>Subtotal:</span>
+                    <span id="subtotalVal" class="font-semibold">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-[#2C2421] pt-2 border-t border-gray-200">
+                    <span>Total:</span>
+                    <span id="totalVal">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- ENDEREÇO PARA ENTREGA -->
+            <div class="mt-2">
+                <input type="text" id="customerAddress" placeholder="Endereço para entrega (Rua, Nº, Bairro)" class="w-full p-2 border border-[#E5D2C5] rounded-xl text-xs bg-white focus:outline-none focus:border-[#2C2421]">
+            </div>
+
+            <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-[#25D366] hover:bg-[#1ebd59] text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 shadow-md transition-colors">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Finalizar Pedido pelo WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- MODAL DE PRODUTO -->
+    <div id="productModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col md:flex-row max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-white/80 hover:bg-white text-gray-700 w-8 h-8 rounded-full flex items-center justify-center z-10 shadow">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="md:w-1/2 bg-[#F8EFEA] aspect-[3/4]">
+                <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+            </div>
+
+            <div class="md:w-1/2 p-6 flex flex-col justify-between">
+                <div>
+                    <span id="modalCategory" class="text-[10px] font-bold text-[#A67B5B] uppercase tracking-wider block mb-1"></span>
+                    <h2 id="modalTitle" class="font-serif text-xl font-bold text-[#2C2421] mb-2"></h2>
+                    
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span id="modalPrice" class="text-xl font-bold text-[#2C2421]"></span>
+                        <span id="modalOldPrice" class="text-xs text-gray-400 line-through hidden"></span>
+                    </div>
+
+                    <p id="modalDesc" class="text-xs text-gray-600 mb-6 leading-relaxed"></p>
+
+                    <!-- OPÇÕES DE TAMANHO -->
+                    <div class="mb-4">
+                        <label class="block text-xs font-bold text-gray-700 mb-2">Tamanho: <span id="selectedSizeLabel" class="font-normal text-gray-500">M</span></label>
+                        <div id="sizeOptions" class="flex gap-2">
+                            <button onclick="selectModalSize('P', this)" class="size-btn">P</button>
+                            <button onclick="selectModalSize('M', this)" class="size-btn active">M</button>
+                            <button onclick="selectModalSize('G', this)" class="size-btn">G</button>
+                            <button onclick="selectModalSize('GG', this)" class="size-btn">GG</button>
+                        </div>
+                    </div>
+
+                    <!-- OPÇÕES DE COR -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold text-gray-700 mb-2">Cor: <span id="selectedColorLabel" class="font-normal text-gray-500"></span></label>
+                        <div id="colorOptions" class="flex flex-wrap gap-2">
+                            <!-- Injetado dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="addModalItemToCart()" class="w-full py-3 bg-[#2C2421] hover:bg-[#3d322e] text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bag-shopping"></i> Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT JS -->
+    <script src="script.js"></script>
+</body>
+</html>
