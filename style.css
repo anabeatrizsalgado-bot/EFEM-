@@ -1,0 +1,104 @@
+/* PALETA DE CORES EFEMÊ */
+:root {
+    --color-bg-brand: #F8EFEA;     /* Bege claro da logo */
+    --color-border-brand: #E5D2C5; /* Bordas suaves */
+    --color-accent-gold: #A67B5B;  /* Dourado/Amadeirado */
+    --color-dark-brand: #2C2421;    /* Escuro elegante */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FAF6F3;
+    color: var(--color-dark-brand);
+    overflow-x: hidden;
+}
+
+/* INTERAÇÕES DE NAVEGAÇÃO */
+.nav-btn.active, 
+.nav-btn:hover {
+    color: var(--color-accent-gold);
+}
+
+/* DROPDOWN ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s ease forwards;
+}
+
+/* CARRINHO DRAWER SLIDE */
+.drawer-slide {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* SCROLLBAR PERSONALIZADO */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FAF6F3;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E5D2C5;
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A67B5B;
+}
+
+/* BOTÕES DE SELEÇÃO INTERATIVOS DO MODAL */
+.size-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-border-brand);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #374151;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.size-btn:hover {
+    border-color: var(--color-accent-gold);
+    color: var(--color-accent-gold);
+}
+
+.size-btn.active {
+    border: 2px solid var(--color-dark-brand);
+    background: var(--color-dark-brand);
+    color: white;
+}
+
+.color-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--color-border-brand);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.color-btn:hover {
+    border-color: var(--color-accent-gold);
+}
+
+.color-btn.active {
+    border: 2px solid var(--color-dark-brand);
+    background: var(--color-dark-brand);
+    color: white;
+}
